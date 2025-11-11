@@ -1,7 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Movie } from '../../services/movieService';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Movie } from "../../services/movieService";
 
-interface MoviesState {
+export interface MoviesState {
   trending: {
     data: Movie[];
     loading: boolean;
@@ -52,13 +52,13 @@ const initialState: MoviesState = {
     data: [],
     loading: false,
     error: null,
-    query: '',
+    query: "",
   },
   selectedMovie: null,
 };
 
 const moviesSlice = createSlice({
-  name: 'movies',
+  name: "movies",
   initialState,
   reducers: {
     // Trending
@@ -119,7 +119,10 @@ const moviesSlice = createSlice({
     setSearchLoading: (state, action: PayloadAction<boolean>) => {
       state.search.loading = action.payload;
     },
-    setSearchData: (state, action: PayloadAction<{ movies: Movie[]; query: string }>) => {
+    setSearchData: (
+      state,
+      action: PayloadAction<{ movies: Movie[]; query: string }>
+    ) => {
       state.search.data = action.payload.movies;
       state.search.query = action.payload.query;
     },
@@ -131,7 +134,7 @@ const moviesSlice = createSlice({
         data: [],
         loading: false,
         error: null,
-        query: '',
+        query: "",
       };
     },
 

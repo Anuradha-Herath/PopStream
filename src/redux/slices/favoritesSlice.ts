@@ -1,15 +1,15 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface FavoriteItem {
   id: number;
   title: string;
-  type: 'movie' | 'tv';
+  type: "movie" | "tv";
   poster_path: string | null;
   vote_average: number;
   addedAt: number;
 }
 
-interface FavoritesState {
+export interface FavoritesState {
   items: FavoriteItem[];
   loading: boolean;
   error: string | null;
@@ -22,7 +22,7 @@ const initialState: FavoritesState = {
 };
 
 const favoritesSlice = createSlice({
-  name: 'favorites',
+  name: "favorites",
   initialState,
   reducers: {
     // Add to favorites
@@ -41,11 +41,6 @@ const favoritesSlice = createSlice({
       state.items = state.items.filter((item) => item.id !== action.payload);
     },
 
-    // Check if item is favorite
-    isFavorite: (state, action: PayloadAction<number>) => {
-      return state.items.some((item) => item.id === action.payload);
-    },
-
     // Clear all favorites
     clearFavorites: (state) => {
       state.items = [];
@@ -61,7 +56,6 @@ const favoritesSlice = createSlice({
 export const {
   addToFavorites,
   removeFromFavorites,
-  isFavorite,
   clearFavorites,
   setFavorites,
 } = favoritesSlice.actions;
